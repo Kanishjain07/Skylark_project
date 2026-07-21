@@ -20,7 +20,7 @@ raw numbers.
 └─────────────────────┘   reply + data   │  /health                     │
                           quality         │                              │
                                           │  ┌────────────────────────┐  │
-                                          │  │ Gemini agent           │  │
+                                          │  │ agent           │  │
                                           │  │ (function calling)     │  │
                                           │  └───────────┬────────────┘  │
                                           │    get_deals │ get_work_orders│
@@ -50,8 +50,8 @@ over the cleaned records and replies with an insight plus caveats.
 
 ### Tech choices (justification)
 - **Python + FastAPI** — async-native (efficient concurrent monday.com +
-  Gemini calls), typed request/response models, auto OpenAPI docs at `/docs`.
-- **Google Gemini + function calling** — the model pulls data only when needed,
+  Groq calls), typed request/response models, auto OpenAPI docs at `/docs`.
+- **groq + function calling** — the model pulls data only when needed,
   keeping answers grounded in live board data instead of hallucinated numbers.
 - **React (JS) + Vite** — fast, componentized chat UI, trivial to host.
 - **Cleaning in the backend, not the model** — deterministic, testable
@@ -66,7 +66,7 @@ exam/
 ├── backend/                 # Python FastAPI service
 │   ├── app/
 │   │   ├── main.py          # FastAPI app: /chat, /leadership-update, /health
-│   │   ├── agent.py         # Gemini agent + function-calling loop
+│   │   ├── agent.py         # agent + function-calling loop
 │   │   ├── data_service.py  # fetch + clean orchestration
 │   │   ├── data_cleaning.py # messy-data normalization + quality report
 │   │   ├── monday_client.py # monday.com GraphQL client (read-only, paginated)
@@ -97,7 +97,8 @@ exam/
 
 ### 2. Get API credentials
 - **monday.com token:** Avatar → Developers → My Access Tokens.
-- **Gemini API key:** https://aistudio.google.com/app/apikey
+- ** API key:** https://aistudio.google.com/app/apikey
+https://console.groq.com
 
 ### 3. Run the backend
 ```bash
